@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ExercisesModule } from './exercises/exercises.module';
 import { WorkoutsModule } from './workouts/workouts.module';
+import { ExerciseEntriesModule } from './exercise-entries/exercise-entries.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { WorkoutsModule } from './workouts/workouts.module';
     AuthModule,
     ExercisesModule,
     WorkoutsModule,
+    ExerciseEntriesModule,
   ],
 })
 export class AppModule {}
