@@ -1,73 +1,75 @@
-# React + TypeScript + Vite
+Fitness Tracker
+Opis
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+To je aplikacija za beleženje treningov in vaj.
+Uporabnik si lahko ustvari račun, doda svoje vaje, dela treninge in spremlja napredek.
 
-Currently, two official plugins are available:
+Glavna ideja projekta je bila, da imam neko enostavno aplikacijo, kjer lahko spremljam treninge in vidim svoj napredek (predvsem personal best).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Funkcionalnosti
+registracija in login (JWT)
+dodajanje vaj (exercises)
+ustvarjanje treningov (workouts)
+dodajanje vaj v trening (exercise entries)
+beleženje:
+sets
+reps
+weight
+prikaz vseh vaj in treningov
+Personal Best
 
-## React Compiler
+Aplikacija sama izračuna personal best za vsako vajo:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+najprej se gleda teža
+če je teža enaka, se gledajo ponovitve (reps)
+vedno je samo en personal best za posamezno vajo
 
-## Expanding the ESLint configuration
+Na frontendu se to prikaže z oznako PB.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Tehnologije
+Backend
+NestJS
+Prisma
+PostgreSQL
+JWT
+Frontend
+React (Vite)
+TypeScript
+Axios
+Kako zagnati projekt
+Backend
+cd backend
+npm install
+npm run start:dev
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Ustvari .env datoteko:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/fitnes_tracker"
+JWT_SECRET="secret"
+PORT=3000
+Frontend
+cd frontend
+npm install --legacy-peer-deps
+npm run dev
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Frontend dela na:
+http://localhost:5173
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Uporaba
+najprej se registriraš ali prijaviš
+dodaš vaje (npr. Bench Press)
+ustvariš workout
+v workout dodaš entry (sets, reps, weight)
+aplikacija sama označi personal best
+Struktura projekta
+backend (NestJS + Prisma)
+frontend (React)
+PostgreSQL baza
+Opombe
+projekt je narejen kot del naloge na faksu
+fokus je bil predvsem na backend logiki in povezavi s frontendom
+UI je bolj osnovni, ampak funkcionalen
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Avtor
+Matevž Tasič
 ```
